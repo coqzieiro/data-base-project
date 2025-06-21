@@ -4,225 +4,76 @@ Este projeto foi desenvolvido para a disciplina de Banco de Dados, com foco em m
 
 ---
 
-## Requisitos
+## Como Rodar os Scripts?
 
-### Dependências
+O comando `\i nome_do_arquivo.sql` no `psql` (o cliente de linha de comando do PostgreSQL) executa os comandos SQL contidos no arquivo especificado. Ele não mostra os resultados *imediatamente* na tela, a menos que os comandos no arquivo incluam instruções para exibir resultados (como um `SELECT`).
 
-#### 1. PostgreSQL
+Para visualizar os resultados dos scripts, você precisa executar comandos `SELECT` *depois* que os scripts forem executados. Aqui está o que cada script faz e como você pode ver os resultados após a execução:
 
-PostgreSQL é um sistema de gerenciamento de banco de dados relacional, utilizado para armazenar e consultar os dados.
+**1. `\i criar_tabelas.sql`:**
 
-- **Instalação no Windows**: Baixe o PostgreSQL em [PostgreSQL Downloads](https://www.postgresql.org/download/).
-- **Instalação no Linux**: Use o gerenciador de pacotes para instalar o PostgreSQL.
+*   **O que faz:** Este script cria as tabelas no seu banco de dados. Ele não exibe resultados diretamente.
+*   **Como verificar:** Para verificar se as tabelas foram criadas corretamente, use o comando `\dt` no `psql`. Ele listará todas as tabelas no banco de dados.
 
-  No Ubuntu, por exemplo:
+    ```sql
+    \dt
+    ```
 
-  ```bash
-  sudo apt update
-  sudo apt install postgresql postgresql-contrib
+    Isso deve mostrar uma lista das suas tabelas: `Aluno`, `Avaliação`, `Avisos`, `Curso`, `Departamento`, etc.
 
-Para outras distribuições Linux, consulte a documentação oficial do PostgreSQL.
+**2. `\i inserir_dados.sql`:**
 
-#### 2. Visual Studio Code (VSCode)
+*   **O que faz:** Este script insere dados nas suas tabelas. Ele não exibe resultados diretamente.
+*   **Como verificar:** Para verificar se os dados foram inseridos corretamente, use comandos `SELECT` para exibir os conteúdos das tabelas. Por exemplo:
 
-O VSCode é uma IDE amplamente utilizada para editar código, incluindo SQL.
+    ```sql
+    SELECT * FROM Aluno LIMIT 10;  -- Mostra os primeiros 10 alunos
+    SELECT COUNT(*) FROM Aluno;       -- Mostra o número total de alunos
+    SELECT * FROM Curso LIMIT 5;    -- Mostra os primeiros 5 cursos
+    ```
 
-* Baixe o VSCode em [Visual Studio Code](https://code.visualstudio.com/).
+    Substitua `Aluno` e `Curso` pelos nomes das outras tabelas para verificar seus conteúdos.
 
-#### 3. Extensão "PostgreSQL" para VSCode
+**3. `\i consultas_tabelas.sql`:**
 
-1. Abra o VSCode.
-2. Acesse a aba de **Extensões** no menu à esquerda.
-3. Pesquise por **PostgreSQL** e instale a extensão "PostgreSQL Management".
+*   **O que faz:** Este script executa consultas nas suas tabelas. Se as consultas estiverem escritas para exibir resultados (usando `SELECT`), os resultados *serão* exibidos na tela *imediatamente* após a execução do script.
 
----
+    Se você já está vendo resultados após executar este script, então está tudo certo. Caso contrário, verifique se o arquivo `consultas_tabelas.sql` realmente contém comandos `SELECT`.
 
-## Como Usar o PostgreSQL no VSCode
+**4. `\i criar_index.sql`:**
 
-### Passo 1: Instalar o PostgreSQL
+*   **O que faz:** Este script cria índices nas suas tabelas. Ele não exibe resultados diretamente.
+*   **Como verificar:** Para verificar se os índices foram criados corretamente, use o comando `\di` no `psql`. Ele listará todos os índices no banco de dados.
 
-Caso não tenha o PostgreSQL instalado, siga as instruções acima para instalar o PostgreSQL no seu sistema.
+    ```sql
+    \di
+    ```
 
-No **Linux**, após instalar, o serviço do PostgreSQL será iniciado automaticamente. Para verificar se o PostgreSQL está em funcionamento, use o seguinte comando:
+    Isso deve mostrar uma lista dos seus índices, incluindo aqueles que você criou com o script.
 
-```bash
-sudo systemctl status postgresql
-```
+**5. `\i criar_views.sql`:**
 
-Se não estiver ativo, você pode iniciar o serviço com:
+*   **O que faz:** Este script cria views (visões) no seu banco de dados. Ele não exibe resultados diretamente.
+*   **Como verificar:**
+    *   **Verificar a criação:** Para verificar se as views foram criadas corretamente, use o comando `\dv` no `psql`. Ele listará todas as views no banco de dados.
 
-```bash
-sudo systemctl start postgresql
-```
+        ```sql
+        \dv
+        ```
 
-### Passo 2: Configurar o PostgreSQL no VSCode
+        Isso deve mostrar uma lista das suas views, como `vw_alunos_disciplinas`, `vw_media_notas`, etc.
+    *   **Visualizar os resultados:** Para visualizar os resultados das views, use comandos `SELECT` para consultar as views. Por exemplo:
 
-#### 1. Instalar a Extensão no VSCode
+        ```sql
+        SELECT * FROM vw_alunos_disciplinas LIMIT 10;  -- Mostra os primeiros 10 resultados da view
+        SELECT * FROM vw_media_notas;                -- Mostra todos os resultados da view
+        ```
 
-Abra o VSCode e acesse a aba de **Extensões**. Procure por **PostgreSQL** e instale a extensão **PostgreSQL Management**.
+**Em resumo:**
 
-#### 2. Conectar ao PostgreSQL
-
-1. Após a instalação da extensão, pressione **Ctrl+Shift+P** (ou **Cmd+Shift+P** no Mac) para abrir a paleta de comandos.
-2. Digite `PostgreSQL: New Connection` e selecione.
-3. Forneça as informações de conexão, como:
-
-   * **Host**: `localhost`
-   * **Usuário**: `postgres` (ou o nome de usuário configurado)
-   * **Senha**: a senha do PostgreSQL
-   * **Banco de dados**: o banco de dados que você deseja acessar (minha_escola).
-
----
-
-## Usando o Arquivo `inserir_dados.sql`
-
-O arquivo `inserir_dados.sql` contém os comandos **INSERT** que irão popular as tabelas no banco de dados com dados de exemplo. Esses dados de exemplo são importantes para testar consultas e interações no banco de dados.
-
-### Como Usar o `inserir_dados.sql`
-
-1. **Abra o arquivo `inserir_dados.sql` no VSCode**.
-2. **Conecte-se ao banco de dados PostgreSQL** usando a extensão configurada no VSCode.
-3. **Selecione o banco de dados** onde você deseja inserir os dados.
-4. **Execute o script SQL** no VSCode:
-
-   * Selecione o código dentro do arquivo e pressione **Ctrl + Enter** (ou **Cmd + Enter** no Mac) para executar.
-   * Selecione **Executar** com o botão direito do mouse para rodar o script.
-
-### Estrutura do Arquivo `inserir_dados.sql`
-
-O arquivo insere dados nas tabelas do banco de dados, incluindo **Curso**, **Disciplina**, **Professor**, **Aluno**, **Matrícula** e outras. Isso garante que o banco de dados seja populado com registros de teste para facilitar o uso.
-
----
-
-## Comandos Úteis no PostgreSQL
-
-Aqui estão alguns comandos básicos para trabalhar com o PostgreSQL:
-
-### Criar um Banco de Dados
-
-```sql
-CREATE DATABASE nome_do_banco;
-```
-
-### Conectar ao Banco de Dados
-
-```sql
-\c nome_do_banco;
-```
-
-### Listar Bancos de Dados
-
-```sql
-\l
-```
-
-### Criar uma Tabela
-
-```sql
-CREATE TABLE nome_da_tabela (
-  id SERIAL PRIMARY KEY,
-  nome VARCHAR(100),
-  idade INTEGER
-);
-```
-
-### Inserir Dados
-
-```sql
-INSERT INTO nome_da_tabela (nome, idade) VALUES ('João', 25);
-```
-
-### Consultar Dados
-
-```sql
-SELECT * FROM nome_da_tabela;
-```
-
-### Atualizar Dados
-
-```sql
-UPDATE nome_da_tabela SET idade = 26 WHERE nome = 'João';
-```
-
-### Excluir Dados
-
-```sql
-DELETE FROM nome_da_tabela WHERE nome = 'João';
-```
-
-### Executar Scripts (.sql)
-
-```sql
-\i criar_tabelas.sql
-```
-
-```sql
-\i inserir_dados.sql
-```
-
-```sql
-\i consultas_tabelas.sql
-```
-
-```sql
-\i criar_index.sql
-```
-
-```sql
-\i criar_views.sql
-```
-
----
-
-## Modelagem do Banco de Dados
-
-O banco de dados contém várias tabelas representando um sistema educacional, incluindo dados sobre cursos, disciplinas, alunos, professores e departamentos. O modelo foi projetado para armazenar informações detalhadas sobre os cursos oferecidos, as disciplinas relacionadas e os alunos matriculados.
-
----
-
-## Estrutura do Projeto
-
-Aqui estão as principais tabelas e seus atributos:
-
-* **Curso**: Contém informações sobre os cursos oferecidos.
-* **Disciplina**: Representa as disciplinas que fazem parte de cada curso.
-* **OfertaDisciplina**: Relaciona um professor com uma disciplina e o período de oferta.
-* **Departamento**: Armazena os dados dos departamentos acadêmicos.
-* **Usuário**: Contém informações sobre os usuários do sistema (alunos, professores e funcionários administrativos).
-* **Professor**: Dados relacionados aos professores.
-* **Aluno**: Dados relacionados aos alunos.
-* **FuncionárioAdministrativo**: Dados sobre os funcionários administrativos.
-* **InfraestruturaCurso**: Registra as demandas de infraestrutura para cada curso.
-
----
-
-## Como Conectar e Interagir com o Banco de Dados
-
-Para **Linux**:
-
-1. Abra um terminal.
-
-2. Inicie a sessão no PostgreSQL com o comando:
-
-   ```bash
-   sudo -u postgres psql
-   ```
-
-3. Conecte-se ao banco de dados que você deseja usar:
-
-   ```sql
-   \c nome_do_banco;
-   ```
-
-4. Execute os comandos SQL necessários para criar as tabelas, inserir dados ou consultar o banco de dados.
-
----
-
-### Links Úteis:
-
-* **PostgreSQL Downloads**: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
-* **PostgreSQL Documentation**: [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
-* **VSCode**: [https://code.visualstudio.com/](https://code.visualstudio.com/)
-* **Extensão PostgreSQL para VSCode**: [https://marketplace.visualstudio.com/items?itemName=ms-postgresql.postgresql](https://marketplace.visualstudio.com/items?itemName=ms-postgresql.postgresql)
-
----
+*   `\i` executa o script, mas não mostra os resultados diretamente (a menos que o script contenha comandos `SELECT`).
+*   Use `\dt` para listar tabelas.
+*   Use `\di` para listar índices.
+*   Use `\dv` para listar views.
+*   Use `SELECT * FROM nome_da_tabela` ou `SELECT * FROM nome_da_view` para exibir os dados.
+*   Lembre-se de usar `LIMIT` para evitar exibir grandes quantidades de dados de uma vez.
