@@ -1,6 +1,6 @@
 # Data Base Project
 
-Este projeto foi desenvolvido para a disciplina de Banco de Dados, com foco em modelagem, mapeamento e normalização de um sistema. O objetivo é fornecer uma base para criar, popular e interagir com um banco de dados utilizando PostgreSQL.
+Este projeto foi desenvolvido para a disciplina de Banco de Dados, com foco em modelagem, mapeamento e normalização de um sistema escolar. O objetivo é fornecer uma base para criar, popular e interagir com um banco de dados utilizando PostgreSQL.
 
 ---
 
