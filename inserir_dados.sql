@@ -1,26 +1,116 @@
+-- Inserir dados na tabela Unidade
+INSERT INTO Unidade (NomeUnidade, Localidade) VALUES
+  ('Campus Central', 'São Paulo'),
+  ('Campus Barra', 'Rio de Janeiro'),
+  ('Campus Pampulha', 'Belo Horizonte'),
+  ('Campus Sul', 'Porto Alegre'),
+  ('Campus Ondina', 'Salvador'),
+  ('Campus Norte', 'Recife'),
+  ('Campus Leste', 'Curitiba'),
+  ('Campus Oeste', 'Fortaleza'),
+  ('Campus Sul 2', 'Porto Alegre'),
+  ('Campus Sudeste', 'São Paulo'),
+  ('Campus Centro', 'Rio de Janeiro'),
+  ('Campus Praia', 'Natal'),
+  ('Campus Universitário', 'Goiânia'),
+  ('Campus Maringá', 'Maringá'),
+  ('Campus Zona Norte', 'Manaus'),
+  ('Campus Metropolitana', 'São Bernardo do Campo'),
+  ('Campus Norte 2', 'Belém'),
+  ('Campus Sorocaba', 'Sorocaba'),
+  ('Campus São Carlos', 'Sorocaba'),
+  ('Campus Caxias', 'Duque de Caxias');
+
+  -- Inserir dados na tabela Usuário
+INSERT INTO Usuário (Nome, Sobrenome, Telefone, DataNascimento, Endereço, Sexo, Email, Senha, NomeUnidade, Localidade) VALUES
+  ('João', 'Silva', '(11)98000', '1990-05-01', 'Rua A, 123', 'M', 'joao.silva@email.com', 'senha123', 'Campus Central', 'São Paulo'),
+  ('Ana', 'Santos', '(11)98001', '1991-06-10', 'Rua B, 456', 'F', 'ana.santos@email.com', 'senha456', 'Campus Barra', 'Rio de Janeiro'),
+  ('Carlos', 'Souza', '(11)98002', '1989-07-15', 'Rua C, 789', 'M', 'carlos.souza@email.com', 'senha789', 'Campus Pampulha', 'Belo Horizonte'),
+  ('Beatriz', 'Gomes', '(11)98003', '1992-08-25', 'Rua D, 101', 'F', 'beatriz.gomes@email.com', 'senha101', 'Campus Sul', 'Porto Alegre'),
+  ('Felipe', 'Silva', '(11)98004', '1990-09-20', 'Rua E, 102', 'M', 'felipe.silva@email.com', 'senha102', 'Campus Ondina', 'Salvador'),
+  ('Ricardo', 'Mendes', '(11)98005', '1988-10-30', 'Rua F, 103', 'M', 'ricardo.mendes@email.com', 'senha103', 'Campus Norte', 'Recife'),
+  ('Juliana', 'Rocha', '(11)98006', '1993-11-11', 'Rua G, 104', 'F', 'juliana.rocha@email.com', 'senha104', 'Campus Leste', 'Curitiba'),
+  ('Thiago', 'Ferreira', '(11)98007', '1994-12-05', 'Rua H, 105', 'M', 'thiago.ferreira@email.com', 'senha105', 'Campus Oeste', 'Fortaleza'),
+  ('Eduardo', 'Dias', '(11)98008', '1992-01-25', 'Rua I, 106', 'M', 'eduardo.dias@email.com', 'senha106', 'Campus Sul 2', 'Porto Alegre'),
+  ('Paula', 'Ferreira', '(11)98009', '1995-02-12', 'Rua J, 107', 'F', 'paula.ferreira@email.com', 'senha107', 'Campus Sudeste', 'São Paulo'),
+  ('Mariana', 'Lima', '(11)98010', '1991-03-18', 'Rua K, 108', 'F', 'mariana.lima@email.com', 'senha108', 'Campus Centro', 'Rio de Janeiro'),
+  ('Felipe', 'Martins', '(11)98011', '1990-04-02', 'Rua L, 109', 'M', 'felipe.martins@email.com', 'senha109', 'Campus Praia', 'Natal'),
+  ('Gustavo', 'Martins', '(11)98012', '1992-05-16', 'Rua M, 110', 'M', 'gustavo.martins@email.com', 'senha110', 'Campus Universitário', 'Goiânia'),
+  ('Thiago', 'Costa', '(11)98013', '1991-06-22', 'Rua N, 111', 'M', 'thiago.costa@email.com', 'senha111', 'Campus Maringá', 'Maringá'),
+  ('Lucas', 'Costa', '(11)98014', '1994-07-30', 'Rua O, 112', 'M', 'lucas.costa@email.com', 'senha112', 'Campus Zona Norte', 'Manaus'),
+  ('Eduardo', 'Lima', '(11)98015', '1990-08-17', 'Rua P, 113', 'M', 'eduardo.lima@email.com', 'senha113', 'Campus Metropolitana', 'São Bernardo do Campo'),
+  ('Paula', 'Almeida', '(11)98016', '1992-09-12', 'Rua Q, 114', 'F', 'paula.almeida@email.com', 'senha114', 'Campus Norte 2', 'Belém'),
+  ('Felipe', 'Pereira', '(11)98017', '1995-10-24', 'Rua R, 115', 'M', 'felipe.pereira@email.com', 'senha115', 'Campus Sorocaba', 'Sorocaba'),
+  ('Ricardo', 'Silva', '(11)98018', '1993-11-28', 'Rua S, 116', 'M', 'ricardo.silva@email.com', 'senha116', 'Campus Caxias', 'Duque de Caxias');
+
+-- Inserir dados na tabela Professor
+INSERT INTO Professor (Nome, Sobrenome, Telefone, ÁreaEspecialização, Titulação) VALUES
+  ('João', 'Silva', '(11)98000', 'Engenharia de Software', 'MSc'),
+  ('Ana', 'Santos', '(11)98001', 'Matemática', 'PhD'),
+  ('Carlos', 'Souza', '(11)98002', 'Redes de Computadores', 'DSc'),
+  ('Beatriz', 'Gomes', '(11)98003', 'Inteligência Artificial', 'MSc'),
+  ('Felipe', 'Silva', '(11)98004', 'Algoritmos', 'PhD'),
+  ('Ricardo', 'Mendes', '(11)98005', 'Sistemas Operacionais', 'MSc'),
+  ('Juliana', 'Rocha', '(11)98006', 'Engenharia de Software', 'DSc'),
+  ('Thiago', 'Ferreira', '(11)98007', 'Redes de Computadores', 'PhD'),
+  ('Eduardo', 'Dias', '(11)98008', 'Matemática', 'MSc'),
+  ('Paula', 'Ferreira', '(11)98009', 'Computação Gráfica', 'PhD'),
+  ('Mariana', 'Lima', '(11)98010', 'Algoritmos', 'MSc'),
+  ('Felipe', 'Martins', '(11)98011', 'Banco de Dados', 'PhD'),
+  ('Gustavo', 'Martins', '(11)98012', 'Engenharia de Software', 'DSc'),
+  ('Thiago', 'Costa', '(11)98013', 'Cálculo', 'MSc'),
+  ('Lucas', 'Costa', '(11)98014', 'Sistemas de Informação', 'PhD'),
+  ('Eduardo', 'Lima', '(11)98015', 'Cálculo Avançado', 'DSc'),
+  ('Paula', 'Almeida', '(11)98016', 'Matemática Aplicada', 'MSc'),
+  ('Felipe', 'Pereira', '(11)98017', 'Lógica Computacional', 'PhD'),
+  ('Ricardo', 'Silva', '(11)98018', 'Engenharia Elétrica', 'MSc'),
+  ('Juliana', 'Rocha', '(11)98019', 'Física', 'PhD');
+
+-- Inserir dados na tabela Departamento
+INSERT INTO Departamento (CódigoDepartamento, NomeDepartamento, NomeProfessorChefe, SobrenomeProfessorChefe, TelefoneProfessorChefe) VALUES
+  (001, 'Departamento de Computação', 'João', 'Silva', '(11)98000'),
+  (002, 'Departamento de Medicina', 'Ana', 'Santos', '(11)98001'),
+  (003, 'Departamento de Direito', 'Carlos', 'Souza', '(11)98002'),
+  (004, 'Departamento de Psicologia', 'Ricardo', 'Mendes', '(11)98003'),
+  (005, 'Departamento de Engenharia', 'Beatriz', 'Gomes', '(11)98004'),
+  (006, 'Departamento de Arquitetura', 'Felipe', 'Silva', '(11)98005'),
+  (007, 'Departamento de Administração', 'Juliana', 'Rocha', '(11)98006'),
+  (008, 'Departamento de Pedagogia', 'Thiago', 'Ferreira', '(11)98007'),
+  (009, 'Departamento de Ciências Biológicas', 'Eduardo', 'Dias', '(11)98008'),
+  (010, 'Departamento de Química', 'Roberta', 'Gomes', '(11)98009'),
+  (011, 'Departamento de Física', 'Carlos', 'Almeida', '(11)98010'),
+  (012, 'Departamento de Ciências Exatas', 'Mariana', 'Lima', '(11)98011'),
+  (013, 'Departamento de Ciências Humanas', 'Paula', 'Ferreira', '(11)98012'),
+  (014, 'Departamento de Saúde', 'Ricardo', 'Santos', '(11)98013'),
+  (015, 'Departamento de Design', 'Lucas', 'Costa', '(11)98014'),
+  (016, 'Departamento de Economia', 'Gustavo', 'Martins', '(11)98015'),
+  (017, 'Departamento de Letras', 'Juliana', 'Rocha', '(11)98016'),
+  (018, 'Departamento de Música', 'Felipe', 'Silva', '(11)98017'),
+  (019, 'Departamento de Ciências Sociais', 'Eduardo', 'Dias', '(11)98018');
+
 -- Inserir dados na tabela Curso
 INSERT INTO Curso (CódigoCurso, NomeCurso, NomeDepartamento, NívelEnsino, CargaHoráriaTotal, NúmeroVagas, Ementa, PréRequisitos, SalaPadrão, RegraCurso) VALUES
-  ('C001', 'Engenharia de Software', 'Departamento de Computação', 'Graduação', 3200, 40, 'Ementa do curso de Engenharia de Software', 'Matemática Básica', 'Sala A1', 'Regra 1'),
-  ('C002', 'Medicina', 'Departamento de Medicina', 'Graduação', 5000, 60, 'Ementa do curso de Medicina', 'Biologia', 'Sala B1', 'Regra 2'),
-  ('C003', 'Direito', 'Departamento de Direito', 'Graduação', 4000, 50, 'Ementa do curso de Direito', 'História', 'Sala C1', 'Regra 3'),
-  ('C004', 'Psicologia', 'Departamento de Psicologia', 'Graduação', 3000, 45, 'Ementa do curso de Psicologia', 'Sociologia', 'Sala D1', 'Regra 4'),
-  ('C005', 'Engenharia Civil', 'Departamento de Engenharia', 'Graduação', 3600, 50, 'Ementa do curso de Engenharia Civil', 'Física', 'Sala E1', 'Regra 5'),
-  ('C006', 'Arquitetura', 'Departamento de Arquitetura', 'Graduação', 3400, 35, 'Ementa do curso de Arquitetura', 'Geometria', 'Sala F1', 'Regra 6'),
-  ('C007', 'Administração', 'Departamento de Administração', 'Graduação', 2800, 60, 'Ementa do curso de Administração', 'Matemática', 'Sala G1', 'Regra 7'),
-  ('C008', 'Pedagogia', 'Departamento de Pedagogia', 'Graduação', 3000, 55, 'Ementa do curso de Pedagogia', 'Psicologia', 'Sala H1', 'Regra 8'),
-  ('C009', 'Engenharia Elétrica', 'Departamento de Engenharia', 'Graduação', 3800, 45, 'Ementa do curso de Engenharia Elétrica', 'Matemática Avançada', 'Sala I1', 'Regra 9'),
-  ('C010', 'Biologia', 'Departamento de Ciências Biológicas', 'Graduação', 3500, 40, 'Ementa do curso de Biologia', 'Química', 'Sala J1', 'Regra 10'),
-  ('C011', 'Física', 'Departamento de Física', 'Graduação', 3200, 45, 'Ementa do curso de Física', 'Matemática Básica', 'Sala K1', 'Regra 11'),
-  ('C012', 'Química', 'Departamento de Química', 'Graduação', 3300, 40, 'Ementa do curso de Química', 'Física', 'Sala L1', 'Regra 12'),
-  ('C013', 'Ciência da Computação', 'Departamento de Computação', 'Graduação', 3600, 50, 'Ementa do curso de Ciência da Computação', 'Matemática', 'Sala M1', 'Regra 13'),
-  ('C014', 'Sistemas de Informação', 'Departamento de Computação', 'Graduação', 3200, 60, 'Ementa do curso de Sistemas de Informação', 'Lógica de Programação', 'Sala N1', 'Regra 14'),
-  ('C015', 'Administração Pública', 'Departamento de Administração', 'Graduação', 3000, 50, 'Ementa do curso de Administração Pública', 'Direito Constitucional', 'Sala O1', 'Regra 15'),
-  ('C016', 'Design de Produtos', 'Departamento de Design', 'Graduação', 3100, 40, 'Ementa do curso de Design de Produtos', 'Design Gráfico', 'Sala P1', 'Regra 16'),
-  ('C017', 'Marketing', 'Departamento de Administração', 'Graduação', 2800, 55, 'Ementa do curso de Marketing', 'Comunicação', 'Sala Q1', 'Regra 17'),
-  ('C018', 'Economia', 'Departamento de Economia', 'Graduação', 3500, 60, 'Ementa do curso de Economia', 'Matemática Financeira', 'Sala R1', 'Regra 18'),
-  ('C019', 'Enfermagem', 'Departamento de Saúde', 'Graduação', 3800, 50, 'Ementa do curso de Enfermagem', 'Anatomia', 'Sala S1', 'Regra 19'),
-  ('C020', 'Veterinária', 'Departamento de Saúde', 'Graduação', 4000, 45, 'Ementa do curso de Veterinária', 'Biologia', 'Sala T1', 'Regra 20');
-
+  (101, 'Engenharia de Software', 'Departamento de Computação', 'Graduação', 3200, 40, 'Ementa do curso de Engenharia de Software', 'Matemática Básica', 'Sala A1', 'Regra 1'),
+  (102, 'Medicina', 'Departamento de Medicina', 'Graduação', 5000, 60, 'Ementa do curso de Medicina', 'Biologia', 'Sala B1', 'Regra 2'),
+  (103, 'Direito', 'Departamento de Direito', 'Graduação', 4000, 50, 'Ementa do curso de Direito', 'História', 'Sala C1', 'Regra 3'),
+  (104, 'Psicologia', 'Departamento de Psicologia', 'Graduação', 3000, 45, 'Ementa do curso de Psicologia', 'Sociologia', 'Sala D1', 'Regra 4'),
+  (105, 'Engenharia Civil', 'Departamento de Engenharia', 'Graduação', 3600, 50, 'Ementa do curso de Engenharia Civil', 'Física', 'Sala E1', 'Regra 5'),
+  (106, 'Arquitetura', 'Departamento de Arquitetura', 'Graduação', 3400, 35, 'Ementa do curso de Arquitetura', 'Geometria', 'Sala F1', 'Regra 6'),
+  (107, 'Administração', 'Departamento de Administração', 'Graduação', 2800, 60, 'Ementa do curso de Administração', 'Matemática', 'Sala G1', 'Regra 7'),
+  (108, 'Pedagogia', 'Departamento de Pedagogia', 'Graduação', 3000, 55, 'Ementa do curso de Pedagogia', 'Psicologia', 'Sala H1', 'Regra 8'),
+  (109, 'Engenharia Elétrica', 'Departamento de Engenharia', 'Graduação', 3800, 45, 'Ementa do curso de Engenharia Elétrica', 'Matemática Avançada', 'Sala I1', 'Regra 9'),
+  (110, 'Biologia', 'Departamento de Ciências Biológicas', 'Graduação', 3500, 40, 'Ementa do curso de Biologia', 'Química', 'Sala J1', 'Regra 10'),
+  (111, 'Física', 'Departamento de Física', 'Graduação', 3200, 45, 'Ementa do curso de Física', 'Matemática Básica', 'Sala K1', 'Regra 11'),
+  (112, 'Química', 'Departamento de Química', 'Graduação', 3300, 40, 'Ementa do curso de Química', 'Física', 'Sala L1', 'Regra 12'),
+  (113, 'Ciência da Computação', 'Departamento de Computação', 'Graduação', 3600, 50, 'Ementa do curso de Ciência da Computação', 'Matemática', 'Sala M1', 'Regra 13'),
+  (114, 'Sistemas de Informação', 'Departamento de Computação', 'Graduação', 3200, 60, 'Ementa do curso de Sistemas de Informação', 'Lógica de Programação', 'Sala N1', 'Regra 14'),
+  (115, 'Administração Pública', 'Departamento de Administração', 'Graduação', 3000, 50, 'Ementa do curso de Administração Pública', 'Direito Constitucional', 'Sala O1', 'Regra 15'),
+  (116, 'Design de Produtos', 'Departamento de Design', 'Graduação', 3100, 40, 'Ementa do curso de Design de Produtos', 'Design Gráfico', 'Sala P1', 'Regra 16'),
+  (117, 'Marketing', 'Departamento de Administração', 'Graduação', 2800, 55, 'Ementa do curso de Marketing', 'Comunicação', 'Sala Q1', 'Regra 17'),
+  (118, 'Economia', 'Departamento de Economia', 'Graduação', 3500, 60, 'Ementa do curso de Economia', 'Matemática Financeira', 'Sala R1', 'Regra 18'),
+  (119, 'Enfermagem', 'Departamento de Saúde', 'Graduação', 3800, 50, 'Ementa do curso de Enfermagem', 'Anatomia', 'Sala S1', 'Regra 19'),
+  (120, 'Veterinária', 'Departamento de Saúde', 'Graduação', 4000, 45, 'Ementa do curso de Veterinária', 'Biologia', 'Sala T1', 'Regra 20');
+  
 -- Inserir dados na tabela Disciplina
 INSERT INTO Disciplina (NomeDisciplina, CódigoCurso, AulasSemanais, MaterialDidático) VALUES
   ('Algoritmos I', 'C001', 4, 'Livro de Algoritmos - Cormen'),
@@ -66,139 +156,28 @@ INSERT INTO OfertaDisciplina (NomeDisciplina, NomeProfessor, SobrenomeProfessor,
   ('Teoria da Computação', 'Mariana', 'Lima', '(11)98017', '2025.2', 'Sala R1', 30),
   ('Sistemas Operacionais Avançados', 'Thiago', 'Costa', '(11)98018', '2025.1', 'Sala S1', 50);
 
--- Inserir dados na tabela Departamento
-INSERT INTO Departamento (CódigoDepartamento, NomeDepartamento, NomeProfessorChefe, SobrenomeProfessorChefe, TelefoneProfessorChefe) VALUES
-  ('D001', 'Departamento de Computação', 'João', 'Silva', '(11)98000'),
-  ('D002', 'Departamento de Medicina', 'Ana', 'Santos', '(11)98001'),
-  ('D003', 'Departamento de Direito', 'Carlos', 'Souza', '(11)98002'),
-  ('D004', 'Departamento de Psicologia', 'Ricardo', 'Mendes', '(11)98003'),
-  ('D005', 'Departamento de Engenharia', 'Beatriz', 'Gomes', '(11)98004'),
-  ('D006', 'Departamento de Arquitetura', 'Felipe', 'Silva', '(11)98005'),
-  ('D007', 'Departamento de Administração', 'Juliana', 'Rocha', '(11)98006'),
-  ('D008', 'Departamento de Pedagogia', 'Thiago', 'Ferreira', '(11)98007'),
-  ('D009', 'Departamento de Ciências Biológicas', 'Eduardo', 'Dias', '(11)98008'),
-  ('D010', 'Departamento de Química', 'Roberta', 'Gomes', '(11)98009'),
-  ('D011', 'Departamento de Física', 'Carlos', 'Almeida', '(11)98010'),
-  ('D012', 'Departamento de Ciências Exatas', 'Mariana', 'Lima', '(11)98011'),
-  ('D013', 'Departamento de Ciências Humanas', 'Paula', 'Ferreira', '(11)98012'),
-  ('D014', 'Departamento de Saúde', 'Ricardo', 'Santos', '(11)98013'),
-  ('D015', 'Departamento de Design', 'Lucas', 'Costa', '(11)98014'),
-  ('D016', 'Departamento de Economia', 'Gustavo', 'Martins', '(11)98015'),
-  ('D017', 'Departamento de Letras', 'Juliana', 'Rocha', '(11)98016'),
-  ('D018', 'Departamento de Música', 'Felipe', 'Silva', '(11)98017'),
-  ('D019', 'Departamento de Ciências Sociais', 'Eduardo', 'Dias', '(11)98018');
-
--- Inserir dados na tabela Usuário
-INSERT INTO Usuário (Nome, Sobrenome, Telefone, DataNascimento, Endereço, Sexo, Email, Senha, NomeUnidade, Localidade) VALUES
-  ('João', 'Silva', '(11)98000', '1990-05-01', 'Rua A, 123', 'M', 'joao.silva@email.com', 'senha123', 'Campus Central', 'São Paulo'),
-  ('Ana', 'Santos', '(11)98001', '1991-06-10', 'Rua B, 456', 'F', 'ana.santos@email.com', 'senha456', 'Campus Barra', 'Rio de Janeiro'),
-  ('Carlos', 'Souza', '(11)98002', '1989-07-15', 'Rua C, 789', 'M', 'carlos.souza@email.com', 'senha789', 'Campus Pampulha', 'Belo Horizonte'),
-  ('Beatriz', 'Gomes', '(11)98003', '1992-08-25', 'Rua D, 101', 'F', 'beatriz.gomes@email.com', 'senha101', 'Campus Sul', 'Porto Alegre'),
-  ('Felipe', 'Silva', '(11)98004', '1990-09-20', 'Rua E, 102', 'M', 'felipe.silva@email.com', 'senha102', 'Campus Ondina', 'Salvador'),
-  ('Ricardo', 'Mendes', '(11)98005', '1988-10-30', 'Rua F, 103', 'M', 'ricardo.mendes@email.com', 'senha103', 'Campus Norte', 'Recife'),
-  ('Juliana', 'Rocha', '(11)98006', '1993-11-11', 'Rua G, 104', 'F', 'juliana.rocha@email.com', 'senha104', 'Campus Leste', 'Curitiba'),
-  ('Thiago', 'Ferreira', '(11)98007', '1994-12-05', 'Rua H, 105', 'M', 'thiago.ferreira@email.com', 'senha105', 'Campus Oeste', 'Fortaleza'),
-  ('Eduardo', 'Dias', '(11)98008', '1992-01-25', 'Rua I, 106', 'M', 'eduardo.dias@email.com', 'senha106', 'Campus Sul 2', 'Porto Alegre'),
-  ('Paula', 'Ferreira', '(11)98009', '1995-02-12', 'Rua J, 107', 'F', 'paula.ferreira@email.com', 'senha107', 'Campus Sudeste', 'São Paulo'),
-  ('Mariana', 'Lima', '(11)98010', '1991-03-18', 'Rua K, 108', 'F', 'mariana.lima@email.com', 'senha108', 'Campus Centro', 'Rio de Janeiro'),
-  ('Felipe', 'Martins', '(11)98011', '1990-04-02', 'Rua L, 109', 'M', 'felipe.martins@email.com', 'senha109', 'Campus Praia', 'Natal'),
-  ('Gustavo', 'Martins', '(11)98012', '1992-05-16', 'Rua M, 110', 'M', 'gustavo.martins@email.com', 'senha110', 'Campus Universitário', 'Goiânia'),
-  ('Thiago', 'Costa', '(11)98013', '1991-06-22', 'Rua N, 111', 'M', 'thiago.costa@email.com', 'senha111', 'Campus Maringá', 'Maringá'),
-  ('Lucas', 'Costa', '(11)98014', '1994-07-30', 'Rua O, 112', 'M', 'lucas.costa@email.com', 'senha112', 'Campus Zona Norte', 'Manaus'),
-  ('Eduardo', 'Lima', '(11)98015', '1990-08-17', 'Rua P, 113', 'M', 'eduardo.lima@email.com', 'senha113', 'Campus Metropolitana', 'São Bernardo do Campo'),
-  ('Paula', 'Almeida', '(11)98016', '1992-09-12', 'Rua Q, 114', 'F', 'paula.almeida@email.com', 'senha114', 'Campus Norte 2', 'Belém'),
-  ('Felipe', 'Pereira', '(11)98017', '1995-10-24', 'Rua R, 115', 'M', 'felipe.pereira@email.com', 'senha115', 'Campus Sorocaba', 'Sorocaba'),
-  ('Ricardo', 'Silva', '(11)98018', '1993-11-28', 'Rua S, 116', 'M', 'ricardo.silva@email.com', 'senha116', 'Campus Caxias', 'Duque de Caxias');
-
--- Inserir dados na tabela Professor
-INSERT INTO Professor (Nome, Sobrenome, Telefone, ÁreaEspecialização, Titulação) VALUES
-  ('João', 'Silva', '(11)98000', 'Engenharia de Software', 'MSc'),
-  ('Ana', 'Santos', '(11)98001', 'Matemática', 'PhD'),
-  ('Carlos', 'Souza', '(11)98002', 'Redes de Computadores', 'DSc'),
-  ('Beatriz', 'Gomes', '(11)98003', 'Inteligência Artificial', 'MSc'),
-  ('Felipe', 'Silva', '(11)98004', 'Algoritmos', 'PhD'),
-  ('Ricardo', 'Mendes', '(11)98005', 'Sistemas Operacionais', 'MSc'),
-  ('Juliana', 'Rocha', '(11)98006', 'Engenharia de Software', 'DSc'),
-  ('Thiago', 'Ferreira', '(11)98007', 'Redes de Computadores', 'PhD'),
-  ('Eduardo', 'Dias', '(11)98008', 'Matemática', 'MSc'),
-  ('Paula', 'Ferreira', '(11)98009', 'Computação Gráfica', 'PhD'),
-  ('Mariana', 'Lima', '(11)98010', 'Algoritmos', 'MSc'),
-  ('Felipe', 'Martins', '(11)98011', 'Banco de Dados', 'PhD'),
-  ('Gustavo', 'Martins', '(11)98012', 'Engenharia de Software', 'DSc'),
-  ('Thiago', 'Costa', '(11)98013', 'Cálculo', 'MSc'),
-  ('Lucas', 'Costa', '(11)98014', 'Sistemas de Informação', 'PhD'),
-  ('Eduardo', 'Lima', '(11)98015', 'Cálculo Avançado', 'DSc'),
-  ('Paula', 'Almeida', '(11)98016', 'Matemática Aplicada', 'MSc'),
-  ('Felipe', 'Pereira', '(11)98017', 'Lógica Computacional', 'PhD'),
-  ('Ricardo', 'Silva', '(11)98018', 'Engenharia Elétrica', 'MSc'),
-  ('Juliana', 'Rocha', '(11)98019', 'Física', 'PhD');
-
--- Inserir dados na tabela Aluno
-INSERT INTO Aluno (Nome, Sobrenome, Telefone) VALUES
-  ('João', 'Silva', '(21)99000'),
-  ('Ana', 'Santos', '(21)99001'),
-  ('Carlos', 'Souza', '(21)99002'),
-  ('Beatriz', 'Gomes', '(21)99003'),
-  ('Felipe', 'Silva', '(21)99004'),
-  ('Ricardo', 'Mendes', '(21)99005'),
-  ('Juliana', 'Rocha', '(21)99006'),
-  ('Thiago', 'Ferreira', '(21)99007'),
-  ('Eduardo', 'Dias', '(21)99008'),
-  ('Paula', 'Ferreira', '(21)99009'),
-  ('Mariana', 'Lima', '(21)99010'),
-  ('Felipe', 'Martins', '(21)99011'),
-  ('Gustavo', 'Martins', '(21)99012'),
-  ('Thiago', 'Costa', '(21)99013'),
-  ('Lucas', 'Costa', '(21)99014'),
-  ('Eduardo', 'Lima', '(21)99015'),
-  ('Paula', 'Almeida', '(21)99016'),
-  ('Felipe', 'Pereira', '(21)99017'),
-  ('Ricardo', 'Silva', '(21)99018');
-
--- Inserir dados na tabela FuncionárioAdministrativo
-INSERT INTO FuncionárioAdministrativo (Nome, Sobrenome, Telefone) VALUES
-  ('Roberta', 'Gomes', '(31)97000'),
-  ('Lucas', 'Silva', '(31)97001'),
-  ('Mariana', 'Costa', '(31)97002'),
-  ('Fernanda', 'Almeida', '(31)97003'),
-  ('Pedro', 'Dias', '(31)97004'),
-  ('Joana', 'Ferreira', '(31)97005'),
-  ('Luciana', 'Ribeiro', '(31)97006'),
-  ('Carlos', 'Lima', '(31)97007'),
-  ('Vera', 'Oliveira', '(31)97008'),
-  ('Tatiane', 'Martins', '(31)97009'),
-  ('Ricardo', 'Santos', '(31)97010'),
-  ('Felipe', 'Barbosa', '(31)97011'),
-  ('Camila', 'Costa', '(31)97012'),
-  ('Eduardo', 'Mendes', '(31)97013'),
-  ('Carlos', 'Almeida', '(31)97014'),
-  ('Beatriz', 'Pereira', '(31)97015'),
-  ('Roberto', 'Silva', '(31)97016'),
-  ('Juliana', 'Rocha', '(31)97017'),
-  ('Tatiane', 'Silva', '(31)97018');
-
 -- Inserir dados na tabela InfraestruturaCurso
 INSERT INTO InfraestruturaCurso (CódigoCurso, Demandas) VALUES
-  ('C001', 'Laboratório de Computação, Sala de TI'),
-  ('C002', 'Equipamentos médicos, sala de cirurgia'),
-  ('C003', 'Biblioteca de Direito, sala de estudos'),
-  ('C004', 'Sala de psicologia, laboratório de análise comportamental'),
-  ('C005', 'Laboratório de Engenharia, simulador de estrutura'),
-  ('C006', 'Laboratório de Arquitetura, maquetes e impressoras 3D'),
-  ('C007', 'Sala de reuniões, escritório de administração'),
-  ('C008', 'Sala de pedagogo, biblioteca de ensino'),
-  ('C009', 'Laboratório de Engenharia Elétrica, bancadas de testes'),
-  ('C010', 'Laboratório de Biologia, microscópios'),
-  ('C011', 'Laboratório de Física, equipamentos para experimentos'),
-  ('C012', 'Laboratório de Química, banco de substâncias químicas'),
-  ('C013', 'Laboratório de Computação, servidores dedicados'),
-  ('C014', 'Laboratório de Sistemas, estação de trabalho'),
-  ('C015', 'Sala de Administração Pública, auditório'),
-  ('C016', 'Laboratório de Design, equipamentos de CAD'),
-  ('C017', 'Laboratório de Marketing, software de análise de dados'),
-  ('C018', 'Laboratório de Economia, software econômico'),
-  ('C019', 'Laboratório de Enfermagem, maca e equipamentos médicos'),
-  ('C020', 'Laboratório de Veterinária, ambiente controlado para estudos');
+  (101, 'Laboratório de Computação, Sala de TI'),
+  (102, 'Equipamentos médicos, sala de cirurgia'),
+  (103, 'Biblioteca de Direito, sala de estudos'),
+  (104, 'Sala de psicologia, laboratório de análise comportamental'),
+  (105, 'Laboratório de Engenharia, simulador de estrutura'),
+  (106, 'Laboratório de Arquitetura, maquetes e impressoras 3D'),
+  (107, 'Sala de reuniões, escritório de administração'),
+  (108, 'Sala de pedagogo, biblioteca de ensino'),
+  (109, 'Laboratório de Engenharia Elétrica, bancadas de testes'),
+  (110, 'Laboratório de Biologia, microscópios'),
+  (111, 'Laboratório de Física, equipamentos para experimentos'),
+  (112, 'Laboratório de Química, banco de substâncias químicas'),
+  (113 'Laboratório de Computação, servidores dedicados'),
+  (114, 'Laboratório de Sistemas, estação de trabalho'),
+  (115, 'Sala de Administração Pública, auditório'),
+  (116, 'Laboratório de Design, equipamentos de CAD'),
+  (117, 'Laboratório de Marketing, software de análise de dados'),
+  (118, 'Laboratório de Economia, software econômico'),
+  (119, 'Laboratório de Enfermagem, maca e equipamentos médicos'),
+  (120, 'Laboratório de Veterinária, ambiente controlado para estudos');
 
 -- Inserir dados na tabela ProfessorDisciplina
 INSERT INTO ProfessorDisciplina (NomeProfessor, SobrenomeProfessor, TelefoneProfessor, NomeDisciplina) VALUES
@@ -222,8 +201,30 @@ INSERT INTO ProfessorDisciplina (NomeProfessor, SobrenomeProfessor, TelefoneProf
   ('Ricardo', 'Silva', '(11)98018', 'Teoria da Computação'),
   ('Juliana', 'Rocha', '(11)98019', 'Sistemas Operacionais Avançados');
 
+-- Inserir dados na tabela Aluno
+INSERT INTO Aluno (Nome, Sobrenome, Telefone) VALUES
+  ('João', 'Silva', '(21)99000'),
+  ('Ana', 'Santos', '(21)99001'),
+  ('Carlos', 'Souza', '(21)99002'),
+  ('Beatriz', 'Gomes', '(21)99003'),
+  ('Felipe', 'Silva', '(21)99004'),
+  ('Ricardo', 'Mendes', '(21)99005'),
+  ('Juliana', 'Rocha', '(21)99006'),
+  ('Thiago', 'Ferreira', '(21)99007'),
+  ('Eduardo', 'Dias', '(21)99008'),
+  ('Paula', 'Ferreira', '(21)99009'),
+  ('Mariana', 'Lima', '(21)99010'),
+  ('Felipe', 'Martins', '(21)99011'),
+  ('Gustavo', 'Martins', '(21)99012'),
+  ('Thiago', 'Costa', '(21)99013'),
+  ('Lucas', 'Costa', '(21)99014'),
+  ('Eduardo', 'Lima', '(21)99015'),
+  ('Paula', 'Almeida', '(21)99016'),
+  ('Felipe', 'Pereira', '(21)99017'),
+  ('Ricardo', 'Silva', '(21)99018');
+
 -- Inserir dados na tabela Matrícula
-INSERT INTO Matrícula (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeríodoLetivo, DataMatrícula, Status, Notas, BolsaOuDesconto, Confirmação, DataLimiteConfirmação, Taxas) VALUES
+INSERT INTO Matrícula (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeríodoLetivo, DataMatrícula, Estado, Notas, BolsaOuDesconto, Confirmação, DataLimiteConfirmação, Taxas) VALUES
   ('João', 'Silva', '(21)99000', 'Algoritmos I', 'João', 'Silva', '(11)98000', '2025.1', '2025-01-10', 'Matriculado', '8.5', 'Nenhuma', TRUE, '2025-01-17', 0.00),
   ('Ana', 'Santos', '(21)99001', 'Redes de Computadores', 'Carlos', 'Souza', '(11)98002', '2025.1', '2025-01-10', 'Matriculado', '7.5', 'Bolsa Integral', TRUE, '2025-01-17', 0.00),
   ('Carlos', 'Souza', '(21)99002', 'Engenharia de Software', 'Pedro', 'Pereira', '(11)98004', '2025.2', '2025-01-15', 'Pendente', 'NULL', 'Nenhuma', FALSE, '2025-01-22', 200.00),
@@ -236,7 +237,7 @@ INSERT INTO Matrícula (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina
   ('Paula', 'Ferreira', '(21)99009', 'Cálculo I', 'Mariana', 'Lima', '(11)98010', '2025.1', '2025-01-10', 'Matriculado', '8.0', 'Nenhuma', TRUE, '2025-01-17', 0.00);
 
 -- Inserir dados na tabela Mensagens
-INSERT INTO Mensagens (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp, Texto) VALUES
+INSERT INTO Mensagens (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestampe, Texto) VALUES
   ('João', 'Silva', '(21)99000', 'Ana', 'Santos', '(21)99001', '2025-01-01 10:00:00', 'Mensagem importante sobre a reunião de amanhã.'),
   ('Carlos', 'Souza', '(21)99002', 'Beatriz', 'Gomes', '(21)99003', '2025-01-02 11:00:00', 'Gostaria de discutir o andamento do projeto.'),
   ('Ricardo', 'Mendes', '(21)99005', 'Felipe', 'Silva', '(21)99004', '2025-01-02 12:00:00', 'A avaliação de Psicologia será na próxima semana.'),
@@ -258,8 +259,7 @@ INSERT INTO Mensagens (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, 
   ('Carlos', 'Barbosa', '(21)99018', 'Juliana', 'Rocha', '(21)99006', '2025-01-10 14:00:00', 'Acho que devemos revisar os cálculos do projeto de Engenharia.');
 
 -- Inserir dados na tabela Avisos
--- Inserir dados na tabela Avisos
-INSERT INTO Avisos (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp, Texto) VALUES
+INSERT INTO Avisos (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestampe, Texto) VALUES
   ('Paula', 'Ferreira', '(21)99009', 'Eduardo', 'Dias', '(21)99008', '2025-01-01 08:00:00', 'Lembre-se de revisar o conteúdo de ontem.'),
   ('Mariana', 'Lima', '(21)99010', 'Ricardo', 'Mendes', '(21)99005', '2025-01-02 09:30:00', 'A aula sobre Cálculo será na próxima semana.'),
   ('Felipe', 'Silva', '(21)99004', 'Juliana', 'Rocha', '(21)99006', '2025-01-02 10:00:00', 'Lembre-se de enviar o relatório até sexta.'),

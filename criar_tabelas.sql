@@ -5,6 +5,23 @@ CREATE TABLE Unidade (
     PRIMARY KEY (NomeUnidade, Localidade)
 );
 
+-- Criar tabela Usuário
+CREATE TABLE Usuário (
+    Nome VARCHAR(50),
+    Sobrenome VARCHAR(50),
+    Telefone VARCHAR(20),
+    DataNascimento DATE,
+    Endereço VARCHAR(200),
+    Sexo CHAR(1),
+    Email VARCHAR(100) UNIQUE,
+    Senha VARCHAR(64),
+    NomeUnidade VARCHAR(100),
+    Localidade VARCHAR(100),
+    PRIMARY KEY (Nome, Sobrenome, Telefone),
+    FOREIGN KEY (NomeUnidade, Localidade) 
+        REFERENCES Unidade(NomeUnidade, Localidade)
+);
+
 -- Criar tabela Professor
 CREATE TABLE Professor (
     Nome VARCHAR(50),
@@ -25,7 +42,6 @@ CREATE TABLE Departamento (
     FOREIGN KEY (NomeProfessorChefe, SobrenomeProfessorChefe, TelefoneProfessorChefe) 
         REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
-
 
 -- Criar tabela Curso
 CREATE TABLE Curso (
@@ -94,23 +110,6 @@ CREATE TABLE Aluno (
     PRIMARY KEY (Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela Usuário
-CREATE TABLE Usuário (
-    Nome VARCHAR(50),
-    Sobrenome VARCHAR(50),
-    Telefone VARCHAR(20),
-    DataNascimento DATE,
-    Endereço VARCHAR(200),
-    Sexo CHAR(1),
-    Email VARCHAR(100) UNIQUE,
-    Senha VARCHAR(64),
-    NomeUnidade VARCHAR(100),
-    Localidade VARCHAR(100),
-    PRIMARY KEY (Nome, Sobrenome, Telefone),
-    FOREIGN KEY (NomeUnidade, Localidade) 
-        REFERENCES Unidade(NomeUnidade, Localidade)
-);
-
 -- Criar tabela Matrícula
 CREATE TABLE Matrícula (
     NomeAluno VARCHAR(50),
@@ -122,7 +121,7 @@ CREATE TABLE Matrícula (
     TelefoneProfessor VARCHAR(20),
     PeríodoLetivo VARCHAR(20),
     DataMatrícula DATE,
-    Status VARCHAR(20),
+    Estado VARCHAR(20),
     Notas TEXT,
     BolsaOuDesconto TEXT,
     Confirmação BOOLEAN,
@@ -145,9 +144,9 @@ CREATE TABLE Mensagens (
     Destinatario_Nome VARCHAR(50),
     Destinatario_Sobrenome VARCHAR(50),
     Destinatario_Telefone VARCHAR(20),
-    Timestamp TIMESTAMP,
+    Timestampe TIMESTAMP,
     Texto TEXT,
-    PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp)
+    PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestampe)
 );
 
 -- Criar tabela Avisos
@@ -158,9 +157,9 @@ CREATE TABLE Avisos (
     Destinatario_Nome VARCHAR(50),
     Destinatario_Sobrenome VARCHAR(50),
     Destinatario_Telefone VARCHAR(20),
-    Timestamp TIMESTAMP,
+    Timestampe TIMESTAMP,
     Texto TEXT,
-    PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp)
+    PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestampe)
 );
 
 -- Criar tabela Avaliação
