@@ -1,6 +1,6 @@
 # Data Base Project
 
-Este projeto foi desenvolvido para a disciplina de Banco de Dados, com foco em modelagem, mapeamento e normalização de um sistema. O objetivo é fornecer uma base para criar, popular e interagir com um banco de dados utilizando PostgreSQL.
+Este projeto foi desenvolvido para a disciplina de Banco de Dados, com foco em modelagem, mapeamento e normalização de um sistema escolar. O objetivo é fornecer uma base para criar, popular e interagir com um banco de dados utilizando PostgreSQL.
 
 ---
 
@@ -20,7 +20,6 @@ PostgreSQL é um sistema de gerenciamento de banco de dados relacional, utilizad
   ```bash
   sudo apt update
   sudo apt install postgresql postgresql-contrib
-````
 
 Para outras distribuições Linux, consulte a documentação oficial do PostgreSQL.
 
@@ -216,14 +215,6 @@ Para **Linux**:
    ```
 
 4. Execute os comandos SQL necessários para criar as tabelas, inserir dados ou consultar o banco de dados.
-
----
-
-## Conclusão
-
-Este projeto fornece uma base funcional para trabalhar com bancos de dados no PostgreSQL. Através do uso do **VSCode**, você pode facilmente editar, executar e testar comandos SQL, e com o script **inserir\_dados.sql**, populamos o banco de dados com dados de exemplo, permitindo que você interaja com ele e faça testes.
-
-Com os dados inseridos e a estrutura do banco pronta, você pode começar a experimentar com consultas SQL, fazer ajustes no banco de dados e executar operações como inserção, atualização e exclusão de dados.
 
 ---
 
