@@ -151,6 +151,28 @@ UPDATE nome_da_tabela SET idade = 26 WHERE nome = 'João';
 DELETE FROM nome_da_tabela WHERE nome = 'João';
 ```
 
+### Executar Scripts (.sql)
+
+```sql
+\i criar_tabelas.sql
+```
+
+```sql
+\i inserir_dados.sql
+```
+
+```sql
+\i consultas_tabelas.sql
+```
+
+```sql
+\i criar_index.sql
+```
+
+```sql
+\i criar_views.sql
+```
+
 ---
 
 ## Modelagem do Banco de Dados
