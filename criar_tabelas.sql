@@ -1,208 +1,188 @@
-CREATE TABLE Departamento (
-  CodigoDepartamento SERIAL PRIMARY KEY,
-  NomeDepartamento VARCHAR(100) NOT NULL,
-  NomeProfessorChefe VARCHAR(50),
-  SobrenomeProfessorChefe VARCHAR(50),
-  TelefoneProfessorChefe VARCHAR(20)
-);
-
-CREATE TABLE Curso (
-  CodigoCurso SERIAL PRIMARY KEY,
-  NomeCurso VARCHAR(100) NOT NULL,
-  CodigoDepartamento INTEGER NOT NULL,  -- Referência ao Departamento
-  NivelEnsino VARCHAR(20),
-  CargaHorariaTotal INTEGER,
-  NumeroVagas INTEGER,
-  Ementa TEXT,
-  SalaPadrao VARCHAR(20),
-  FOREIGN KEY (CodigoDepartamento) REFERENCES Departamento(CodigoDepartamento)
-);
-
-CREATE TABLE Disciplina (
-  NomeDisciplina VARCHAR(100) PRIMARY KEY,
-  CodigoCurso INTEGER NOT NULL,  -- Referência ao Curso
-  AulasSemanais INTEGER,
-  MaterialDidatico TEXT,
-  FOREIGN KEY (CodigoCurso) REFERENCES Curso(CodigoCurso)
-);
-
-CREATE TABLE PreRequisitos (
-  CodigoCurso INTEGER NOT NULL,
-  CodigoDisciplina VARCHAR(100) NOT NULL,
-  PRIMARY KEY (CodigoCurso, CodigoDisciplina),
-  FOREIGN KEY (CodigoCurso) REFERENCES Curso(CodigoCurso),
-  FOREIGN KEY (CodigoDisciplina) REFERENCES Disciplina(NomeDisciplina)
-);
-
-CREATE TABLE RegrasCurso (
-  CodigoCurso INTEGER NOT NULL,
-  FrequenciaMinima DECIMAL(5,2),
-  CritériosAprovacao TEXT,
-  PRIMARY KEY (CodigoCurso),
-  FOREIGN KEY (CodigoCurso) REFERENCES Curso(CodigoCurso)
-);
-
--- Tabela OfertaDisciplina
-CREATE TABLE OfertaDisciplina (
-  NomeDisciplina VARCHAR(100),
-  NomeProfessor VARCHAR(50),
-  SobrenomeProfessor VARCHAR(50),
-  TelefoneProfessor VARCHAR(20),
-  PeriodoLetivo VARCHAR(20),
-  Sala VARCHAR(20),
-  Capacidade INTEGER,
-  PRIMARY KEY (NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeriodoLetivo),
-  FOREIGN KEY (NomeDisciplina) REFERENCES Disciplina(NomeDisciplina)
-);
-
--- Tabela Usuário
-CREATE TABLE Usuario (
-  Nome VARCHAR(50),
-  Sobrenome VARCHAR(50),
-  Telefone VARCHAR(20),
-  DataNascimento DATE,
-  Sexo CHAR(1),
-  Email VARCHAR(100) UNIQUE,
-  Senha VARCHAR(64),
-  NomeUnidade VARCHAR(100),
-  Localidade VARCHAR(100),
-  PRIMARY KEY (Nome, Sobrenome, Telefone)
-);
-
-CREATE TABLE EnderecoUsuario (
-  NomeUsuario VARCHAR(50),
-  SobrenomeUsuario VARCHAR(50),
-  TelefoneUsuario VARCHAR(20),
-  Rua VARCHAR(100),
-  Cidade VARCHAR(100),
-  CEP VARCHAR(20),
-  PRIMARY KEY (NomeUsuario, SobrenomeUsuario, TelefoneUsuario),
-  FOREIGN KEY (NomeUsuario, SobrenomeUsuario, TelefoneUsuario) REFERENCES Usuario(Nome, Sobrenome, Telefone)
-);
-
-CREATE TABLE Professor (
-  Nome VARCHAR(50),
-  Sobrenome VARCHAR(50),
-  Telefone VARCHAR(20),
-  AreaEspecializacao VARCHAR(100),
-  Titulacao VARCHAR(50),
-  PRIMARY KEY (Nome, Sobrenome, Telefone)
-);
-
-CREATE TABLE Aluno (
-  NomeAluno VARCHAR(50),
-  SobrenomeAluno VARCHAR(50),
-  TelefoneAluno VARCHAR(20),
-  PRIMARY KEY (NomeAluno, SobrenomeAluno, TelefoneAluno)
-);
-
-CREATE TABLE FuncionarioAdministrativo (
-  Nome VARCHAR(50),
-  Sobrenome VARCHAR(50),
-  Telefone VARCHAR(20),
-  PRIMARY KEY (Nome, Sobrenome, Telefone)
-);
-
+-- Criar tabela Unidade
 CREATE TABLE Unidade (
-  NomeUnidade VARCHAR(100) PRIMARY KEY
+    NomeUnidade VARCHAR(100),
+    Localidade VARCHAR(100),
+    PRIMARY KEY (NomeUnidade, Localidade)
 );
 
-CREATE TABLE LocalidadeUnidade (
-  NomeUnidade VARCHAR(100),
-  Cidade VARCHAR(100),
-  Estado VARCHAR(100),
-  Pais VARCHAR(100),
-  PredioOuBloco VARCHAR(100),
-  PRIMARY KEY (NomeUnidade, Cidade, Estado),
-  FOREIGN KEY (NomeUnidade) REFERENCES Unidade(NomeUnidade)
+-- Criar tabela Professor
+CREATE TABLE Professor (
+    Nome VARCHAR(50),
+    Sobrenome VARCHAR(50),
+    Telefone VARCHAR(20),
+    ÁreaEspecialização VARCHAR(100),
+    Titulação VARCHAR(50),
+    PRIMARY KEY (Nome, Sobrenome, Telefone)
 );
 
+-- Criar tabela Departamento
+CREATE TABLE Departamento (
+    CódigoDepartamento INTEGER PRIMARY KEY,
+    NomeDepartamento VARCHAR(100) NOT NULL UNIQUE,  -- Adicionando UNIQUE aqui
+    NomeProfessorChefe VARCHAR(50),
+    SobrenomeProfessorChefe VARCHAR(50),
+    TelefoneProfessorChefe VARCHAR(20),
+    FOREIGN KEY (NomeProfessorChefe, SobrenomeProfessorChefe, TelefoneProfessorChefe) 
+        REFERENCES Professor(Nome, Sobrenome, Telefone)
+);
+
+
+-- Criar tabela Curso
+CREATE TABLE Curso (
+    CódigoCurso INTEGER PRIMARY KEY,
+    NomeCurso VARCHAR(100) NOT NULL,
+    NomeDepartamento VARCHAR(100),
+    NívelEnsino VARCHAR(20),
+    CargaHoráriaTotal INTEGER,
+    NúmeroVagas INTEGER,
+    Ementa TEXT,
+    PréRequisitos VARCHAR(100),
+    SalaPadrão VARCHAR(20),
+    RegraCurso VARCHAR(100),
+    FOREIGN KEY (NomeDepartamento) REFERENCES Departamento(NomeDepartamento)
+);
+
+-- Criar tabela Disciplina
+CREATE TABLE Disciplina (
+    NomeDisciplina VARCHAR(100) PRIMARY KEY,
+    CódigoCurso INTEGER,
+    AulasSemanais INTEGER,
+    MaterialDidático TEXT,
+    FOREIGN KEY (CódigoCurso) REFERENCES Curso(CódigoCurso)
+);
+
+-- Criar tabela OfertaDisciplina
+CREATE TABLE OfertaDisciplina (
+    NomeDisciplina VARCHAR(100),
+    NomeProfessor VARCHAR(50),
+    SobrenomeProfessor VARCHAR(50),
+    TelefoneProfessor VARCHAR(20),
+    PeríodoLetivo VARCHAR(20),
+    Sala VARCHAR(20),
+    Capacidade INTEGER,
+    PRIMARY KEY (NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeríodoLetivo),
+    FOREIGN KEY (NomeDisciplina) REFERENCES Disciplina(NomeDisciplina),
+    FOREIGN KEY (NomeProfessor, SobrenomeProfessor, TelefoneProfessor) 
+        REFERENCES Professor(Nome, Sobrenome, Telefone)
+);
+
+-- Criar tabela InfraestruturaCurso
 CREATE TABLE InfraestruturaCurso (
-  CodigoCurso INTEGER,
-  PRIMARY KEY (CodigoCurso),
-  FOREIGN KEY (CodigoCurso) REFERENCES Curso(CodigoCurso)
+    CódigoCurso INTEGER,
+    Demandas VARCHAR(100),
+    PRIMARY KEY (CódigoCurso, Demandas),
+    FOREIGN KEY (CódigoCurso) REFERENCES Curso(CódigoCurso)
 );
 
-CREATE TABLE DemandaCurso (
-  CodigoCurso INTEGER,
-  LaboratorioInformatica BOOLEAN,
-  Projeto BOOLEAN,
-  LousaDigital BOOLEAN,
-  PRIMARY KEY (CodigoCurso),
-  FOREIGN KEY (CodigoCurso) REFERENCES Curso(CodigoCurso)
-);
-
+-- Criar tabela ProfessorDisciplina
 CREATE TABLE ProfessorDisciplina (
-  NomeProfessor VARCHAR(50),
-  SobrenomeProfessor VARCHAR(50),
-  TelefoneProfessor VARCHAR(20),
-  NomeDisciplina VARCHAR(100),
-  PRIMARY KEY (NomeProfessor, SobrenomeProfessor, TelefoneProfessor, NomeDisciplina),
-  FOREIGN KEY (NomeDisciplina) REFERENCES Disciplina(NomeDisciplina)
+    NomeProfessor VARCHAR(50),
+    SobrenomeProfessor VARCHAR(50),
+    TelefoneProfessor VARCHAR(20),
+    NomeDisciplina VARCHAR(100),
+    PRIMARY KEY (NomeProfessor, SobrenomeProfessor, TelefoneProfessor, NomeDisciplina),
+    FOREIGN KEY (NomeDisciplina) REFERENCES Disciplina(NomeDisciplina),
+    FOREIGN KEY (NomeProfessor, SobrenomeProfessor, TelefoneProfessor) 
+        REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
 
+-- Criar tabela Aluno
+CREATE TABLE Aluno (
+    Nome VARCHAR(50),
+    Sobrenome VARCHAR(50),
+    Telefone VARCHAR(20),
+    PRIMARY KEY (Nome, Sobrenome, Telefone)
+);
+
+-- Criar tabela Usuário
+CREATE TABLE Usuário (
+    Nome VARCHAR(50),
+    Sobrenome VARCHAR(50),
+    Telefone VARCHAR(20),
+    DataNascimento DATE,
+    Endereço VARCHAR(200),
+    Sexo CHAR(1),
+    Email VARCHAR(100) UNIQUE,
+    Senha VARCHAR(64),
+    NomeUnidade VARCHAR(100),
+    Localidade VARCHAR(100),
+    PRIMARY KEY (Nome, Sobrenome, Telefone),
+    FOREIGN KEY (NomeUnidade, Localidade) 
+        REFERENCES Unidade(NomeUnidade, Localidade)
+);
+
+-- Criar tabela Matrícula
+CREATE TABLE Matrícula (
+    NomeAluno VARCHAR(50),
+    SobrenomeAluno VARCHAR(50),
+    TelefoneAluno VARCHAR(20),
+    NomeDisciplina VARCHAR(100),
+    NomeProfessor VARCHAR(50),
+    SobrenomeProfessor VARCHAR(50),
+    TelefoneProfessor VARCHAR(20),
+    PeríodoLetivo VARCHAR(20),
+    DataMatrícula DATE,
+    Status VARCHAR(20),
+    Notas TEXT,
+    BolsaOuDesconto TEXT,
+    Confirmação BOOLEAN,
+    DataLimiteConfirmação DATE,
+    Taxas DECIMAL(10,2),
+    PRIMARY KEY (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeríodoLetivo),
+    FOREIGN KEY (NomeAluno, SobrenomeAluno, TelefoneAluno) 
+        REFERENCES Aluno(Nome, Sobrenome, Telefone),
+    FOREIGN KEY (NomeDisciplina) 
+        REFERENCES Disciplina(NomeDisciplina),
+    FOREIGN KEY (NomeProfessor, SobrenomeProfessor, TelefoneProfessor) 
+        REFERENCES Professor(Nome, Sobrenome, Telefone)
+);
+
+-- Criar tabela Mensagens
 CREATE TABLE Mensagens (
-  Remetente_Nome VARCHAR(50),
-  Remetente_Sobrenome VARCHAR(50),
-  Remetente_Telefone VARCHAR(20),
-  Destinatario_Nome VARCHAR(50),
-  Destinatario_Sobrenome VARCHAR(50),
-  Destinatario_Telefone VARCHAR(20),
-  Timestamp TIMESTAMP,
-  Texto TEXT,
-  PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp)
+    Remetente_Nome VARCHAR(50),
+    Remetente_Sobrenome VARCHAR(50),
+    Remetente_Telefone VARCHAR(20),
+    Destinatario_Nome VARCHAR(50),
+    Destinatario_Sobrenome VARCHAR(50),
+    Destinatario_Telefone VARCHAR(20),
+    Timestamp TIMESTAMP,
+    Texto TEXT,
+    PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp)
 );
 
+-- Criar tabela Avisos
 CREATE TABLE Avisos (
-  Remetente_Nome VARCHAR(50),
-  Remetente_Sobrenome VARCHAR(50),
-  Remetente_Telefone VARCHAR(20),
-  Destinatario_Nome VARCHAR(50),
-  Destinatario_Sobrenome VARCHAR(50),
-  Destinatario_Telefone VARCHAR(20),
-  Timestamp TIMESTAMP,
-  Texto TEXT,
-  PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp)
+    Remetente_Nome VARCHAR(50),
+    Remetente_Sobrenome VARCHAR(50),
+    Remetente_Telefone VARCHAR(20),
+    Destinatario_Nome VARCHAR(50),
+    Destinatario_Sobrenome VARCHAR(50),
+    Destinatario_Telefone VARCHAR(20),
+    Timestamp TIMESTAMP,
+    Texto TEXT,
+    PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestamp)
 );
 
-CREATE TABLE Matricula (
-  NomeAluno VARCHAR(50),
-  SobrenomeAluno VARCHAR(50),
-  TelefoneAluno VARCHAR(20),
-  NomeDisciplina VARCHAR(100),
-  PeriodoLetivo VARCHAR(20),
-  DataMatricula DATE,
-  Status VARCHAR(20),
-  Notas TEXT,
-  BolsaOuDesconto TEXT,
-  Confirmacao BOOLEAN,
-  DataLimiteConfirmacao DATE,
-  Taxas DECIMAL(10, 2),
-  PRIMARY KEY (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, PeriodoLetivo),
-  FOREIGN KEY (NomeDisciplina) REFERENCES Disciplina(NomeDisciplina)
-);
-
-CREATE TABLE Avaliacao (
-  NomeAluno VARCHAR(50),
-  SobrenomeAluno VARCHAR(50),
-  TelefoneAluno VARCHAR(20),
-  NomeDisciplina VARCHAR(100),
-  NomeProfessor VARCHAR(50),
-  SobrenomeProfessor VARCHAR(50),
-  TelefoneProfessor VARCHAR(20),
-  PeriodoLetivo VARCHAR(20),
-  Comentario TEXT,
-  PRIMARY KEY (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeriodoLetivo)
-);
-
-CREATE TABLE NotasAvaliacao (
-  NomeAluno VARCHAR(50),
-  SobrenomeAluno VARCHAR(50),
-  TelefoneAluno VARCHAR(20),
-  NomeDisciplina VARCHAR(100),
-  PeriodoLetivo VARCHAR(20),
-  TipoNota VARCHAR(50),
-  Nota INTEGER,
-  PRIMARY KEY (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, PeriodoLetivo, TipoNota),
-  FOREIGN KEY (NomeDisciplina) REFERENCES Disciplina(NomeDisciplina)
+-- Criar tabela Avaliação
+CREATE TABLE Avaliação (
+    NomeAluno VARCHAR(50),
+    SobrenomeAluno VARCHAR(50),
+    TelefoneAluno VARCHAR(20),
+    NomeDisciplina VARCHAR(100),
+    NomeProfessor VARCHAR(50),
+    SobrenomeProfessor VARCHAR(50),
+    TelefoneProfessor VARCHAR(20),
+    PeríodoLetivo VARCHAR(20),
+    Comentário TEXT,
+    NotaDidática INTEGER,
+    NotaMaterial INTEGER,
+    NotaConteúdo INTEGER,
+    NotaInfraestrutura INTEGER,
+    PRIMARY KEY (NomeAluno, SobrenomeAluno, TelefoneAluno, NomeDisciplina, NomeProfessor, SobrenomeProfessor, TelefoneProfessor, PeríodoLetivo),
+    FOREIGN KEY (NomeAluno, SobrenomeAluno, TelefoneAluno) 
+        REFERENCES Aluno(Nome, Sobrenome, Telefone),
+    FOREIGN KEY (NomeDisciplina) 
+        REFERENCES Disciplina(NomeDisciplina),
+    FOREIGN KEY (NomeProfessor, SobrenomeProfessor, TelefoneProfessor) 
+        REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
