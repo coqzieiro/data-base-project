@@ -12,8 +12,6 @@ JOIN Matrícula M
 WHERE M.NomeDisciplina = 'Algoritmos I'
   AND M.PeríodoLetivo = '2025.1';
 
--- ----------------------------------------------------------------------
-
 -- Consulta 2: Calcular a média de notas de um aluno
 EXPLAIN ANALYZE
 SELECT
@@ -24,8 +22,6 @@ FROM Matrícula M
 WHERE M.NomeAluno = 'João'
   AND M.SobrenomeAluno = 'Silva'
 GROUP BY M.NomeAluno, M.SobrenomeAluno;
-
--- ----------------------------------------------------------------------
 
 -- Consulta 3: Listar os professores de um departamento com suas respectivas disciplinas
 EXPLAIN ANALYZE
@@ -43,8 +39,6 @@ JOIN Disciplina D
 JOIN Curso C
     ON D.CódigoCurso = C.CódigoCurso
 WHERE C.NomeDepartamento = 'Departamento de Computação';
-
--- ----------------------------------------------------------------------
 
 -- Consulta 4: Encontrar a média das notas dos alunos para cada professor (nota menor que 8)
 EXPLAIN ANALYZE
@@ -65,8 +59,6 @@ GROUP BY P.Nome, P.Sobrenome
 HAVING AVG(A.NotaDidática) < 8
 ORDER BY MediaNotas DESC;
 
--- ----------------------------------------------------------------------
-
 -- Consulta 5: Listar todos os alunos com Bolsas ou Descontos:
 EXPLAIN ANALYZE
 SELECT
@@ -82,8 +74,6 @@ JOIN Matrícula M
 WHERE M.BolsaOuDesconto IS NOT NULL
   AND M.BolsaOuDesconto <> 'Nenhuma';
 
--- ----------------------------------------------------------------------
-
 -- Consulta 6: Listar os alunos que possuem notas acima de 8.0 em alguma disciplina
 EXPLAIN ANALYZE
 SELECT
@@ -93,8 +83,6 @@ SELECT
     M.Notas
 FROM Matrícula M
 WHERE CAST(M.Notas AS DECIMAL(10,2)) > 8.0;
-
--- ----------------------------------------------------------------------
 
 -- Consulta 7: Listar avaliações com notas menores que 7 em Didática
 EXPLAIN ANALYZE
@@ -115,5 +103,3 @@ JOIN Professor P
     AND AV.SobrenomeProfessor = P.Sobrenome
     AND AV.TelefoneProfessor = P.Telefone
 WHERE AV.NotaDidática < 7;
-
--- ----------------------------------------------------------------------

@@ -1,11 +1,11 @@
--- Criar tabela Unidade
+-- Unidade
 CREATE TABLE Unidade (
     NomeUnidade VARCHAR(100),
     Localidade VARCHAR(100),
     PRIMARY KEY (NomeUnidade, Localidade)
 );
 
--- Criar tabela Usuário
+-- Usuário
 CREATE TABLE Usuário (
     Nome VARCHAR(50),
     Sobrenome VARCHAR(50),
@@ -22,7 +22,7 @@ CREATE TABLE Usuário (
         REFERENCES Unidade(NomeUnidade, Localidade)
 );
 
--- Criar tabela Professor
+-- Professor
 CREATE TABLE Professor (
     Nome VARCHAR(50),
     Sobrenome VARCHAR(50),
@@ -32,7 +32,7 @@ CREATE TABLE Professor (
     PRIMARY KEY (Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela Departamento
+-- Departamento
 CREATE TABLE Departamento (
     CódigoDepartamento INTEGER PRIMARY KEY,
     NomeDepartamento VARCHAR(100) NOT NULL UNIQUE,  -- Adicionando UNIQUE aqui
@@ -43,7 +43,7 @@ CREATE TABLE Departamento (
         REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela Curso
+-- Curso
 CREATE TABLE Curso (
     CódigoCurso INTEGER PRIMARY KEY,
     NomeCurso VARCHAR(100) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE Curso (
     FOREIGN KEY (NomeDepartamento) REFERENCES Departamento(NomeDepartamento)
 );
 
--- Criar tabela Disciplina
+-- Disciplina
 CREATE TABLE Disciplina (
     NomeDisciplina VARCHAR(100) PRIMARY KEY,
     CódigoCurso INTEGER,
@@ -67,7 +67,7 @@ CREATE TABLE Disciplina (
     FOREIGN KEY (CódigoCurso) REFERENCES Curso(CódigoCurso)
 );
 
--- Criar tabela OfertaDisciplina
+-- OfertaDisciplina
 CREATE TABLE OfertaDisciplina (
     NomeDisciplina VARCHAR(100),
     NomeProfessor VARCHAR(50),
@@ -82,7 +82,7 @@ CREATE TABLE OfertaDisciplina (
         REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela InfraestruturaCurso
+-- InfraestruturaCurso
 CREATE TABLE InfraestruturaCurso (
     CódigoCurso INTEGER,
     Demandas VARCHAR(100),
@@ -90,7 +90,7 @@ CREATE TABLE InfraestruturaCurso (
     FOREIGN KEY (CódigoCurso) REFERENCES Curso(CódigoCurso)
 );
 
--- Criar tabela ProfessorDisciplina
+-- ProfessorDisciplina
 CREATE TABLE ProfessorDisciplina (
     NomeProfessor VARCHAR(50),
     SobrenomeProfessor VARCHAR(50),
@@ -102,7 +102,7 @@ CREATE TABLE ProfessorDisciplina (
         REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela Aluno
+-- Aluno
 CREATE TABLE Aluno (
     Nome VARCHAR(50),
     Sobrenome VARCHAR(50),
@@ -110,7 +110,7 @@ CREATE TABLE Aluno (
     PRIMARY KEY (Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela Matrícula
+-- Matrícula
 CREATE TABLE Matrícula (
     NomeAluno VARCHAR(50),
     SobrenomeAluno VARCHAR(50),
@@ -136,7 +136,7 @@ CREATE TABLE Matrícula (
         REFERENCES Professor(Nome, Sobrenome, Telefone)
 );
 
--- Criar tabela Mensagens
+-- Mensagens
 CREATE TABLE Mensagens (
     Remetente_Nome VARCHAR(50),
     Remetente_Sobrenome VARCHAR(50),
@@ -149,7 +149,7 @@ CREATE TABLE Mensagens (
     PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestampe)
 );
 
--- Criar tabela Avisos
+-- Avisos
 CREATE TABLE Avisos (
     Remetente_Nome VARCHAR(50),
     Remetente_Sobrenome VARCHAR(50),
@@ -162,7 +162,7 @@ CREATE TABLE Avisos (
     PRIMARY KEY (Remetente_Nome, Remetente_Sobrenome, Remetente_Telefone, Destinatario_Nome, Destinatario_Sobrenome, Destinatario_Telefone, Timestampe)
 );
 
--- Criar tabela Avaliação
+-- Avaliação
 CREATE TABLE Avaliação (
     NomeAluno VARCHAR(50),
     SobrenomeAluno VARCHAR(50),

@@ -1,4 +1,4 @@
--- 1. Listar todos os alunos matriculados em uma disciplina específica em um determinado período
+-- Consulta 1: Listar todos os alunos matriculados em uma disciplina específica em um determinado período
 SELECT 
     A.Nome AS NomeAluno, 
     A.Sobrenome AS SobrenomeAluno, 
@@ -11,7 +11,7 @@ JOIN Matrícula M
 WHERE M.NomeDisciplina = 'Algoritmos I' 
   AND M.PeríodoLetivo = '2025.1';
 
--- 2. Calcular a média de notas de um aluno
+-- Consulta 2: Calcular a média de notas de um aluno
 SELECT 
     M.NomeAluno, 
     M.SobrenomeAluno, 
@@ -21,7 +21,7 @@ WHERE M.NomeAluno = 'João'
   AND M.SobrenomeAluno = 'Silva'
 GROUP BY M.NomeAluno, M.SobrenomeAluno;
 
--- 3. Listar os professores de um departamento com suas respectivas disciplinas
+-- Consulta 3: Listar os professores de um departamento com suas respectivas disciplinas
 SELECT 
     P.Nome AS NomeProfessor, 
     P.Sobrenome AS SobrenomeProfessor, 
@@ -37,7 +37,7 @@ JOIN Curso C
     ON D.CódigoCurso = C.CódigoCurso
 WHERE C.NomeDepartamento = 'Departamento de Computação';
 
--- 4. Encontrar a média das notas dos alunos para cada professor (nota menor que 8)
+-- Consulta 4: Encontrar a média das notas dos alunos para cada professor (< 8)
 SELECT 
     P.Nome AS NomeProfessor,
     P.Sobrenome AS SobrenomeProfessor,
@@ -55,7 +55,7 @@ GROUP BY P.Nome, P.Sobrenome
 HAVING AVG(A.NotaDidática) < 8 
 ORDER BY MediaNotas DESC;
 
--- 5. Listar todos os alunos com Bolsas ou Descontos:
+-- Consulta 5: Listar todos os alunos com Bolsas ou Descontos
 SELECT 
     A.Nome AS NomeAluno, 
     A.Sobrenome AS SobrenomeAluno, 
@@ -69,7 +69,7 @@ JOIN Matrícula M
 WHERE M.BolsaOuDesconto IS NOT NULL 
   AND M.BolsaOuDesconto <> 'Nenhuma';
 
--- 6. Listar os alunos que possuem notas acima de 8.0 em alguma disciplina
+-- Consulta 6: Listar os alunos que possuem notas > 8 em alguma disciplina
 SELECT 
     M.NomeAluno, 
     M.SobrenomeAluno, 
@@ -78,7 +78,7 @@ SELECT
 FROM Matrícula M
 WHERE CAST(M.Notas AS DECIMAL(10,2)) > 8.0;
 
--- 7. Listar avaliações com notas menores que 7 em Didática
+-- Consulta 7: Listar avaliações com notas < 7 em Didática
 SELECT 
     A.Nome AS NomeAluno, 
     A.Sobrenome AS SobrenomeAluno, 
