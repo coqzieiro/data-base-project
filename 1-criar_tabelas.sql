@@ -35,7 +35,7 @@ CREATE TABLE Professor (
 -- Departamento
 CREATE TABLE Departamento (
     CódigoDepartamento INTEGER PRIMARY KEY,
-    NomeDepartamento VARCHAR(100) NOT NULL UNIQUE,  -- Adicionando UNIQUE aqui
+    NomeDepartamento VARCHAR(100) NOT NULL UNIQUE, 
     NomeProfessorChefe VARCHAR(50),
     SobrenomeProfessorChefe VARCHAR(50),
     TelefoneProfessorChefe VARCHAR(20),
