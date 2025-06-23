@@ -1,0 +1,122 @@
+USAMOS O SCRIPT 5-analise-tempo.sql PARA VERIFICAR OS TEMPOS DE CADA QUERY:
+
+                                                                          QUERY PLAN                                                                           
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Hash Join  (cost=2.92..5.20 rows=1 width=27) (actual time=0.040..0.072 rows=2 loops=1)
+   Hash Cond: (((a.nome)::text = (m.nomealuno)::text) AND ((a.sobrenome)::text = (m.sobrenomealuno)::text) AND ((a.telefone)::text = (m.telefonealuno)::text))
+   ->  Seq Scan on aluno a  (cost=0.00..1.60 rows=60 width=27) (actual time=0.005..0.010 rows=60 loops=1)
+   ->  Hash  (cost=2.90..2.90 rows=1 width=27) (actual time=0.019..0.019 rows=2 loops=1)
+         Buckets: 1024  Batches: 1  Memory Usage: 9kB
+         ->  Seq Scan on "matrícula" m  (cost=0.00..2.90 rows=1 width=27) (actual time=0.005..0.014 rows=2 loops=1)
+               Filter: (((nomedisciplina)::text = 'Algoritmos I'::text) AND (("períodoletivo")::text = '2025.1'::text))
+               Rows Removed by Filter: 58
+ Planning Time: 1.579 ms
+ Execution Time: 0.115 ms
+(10 linhas)
+
+                                                QUERY PLAN                                                  
+--------------------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=0.00..2.93 rows=1 width=46) (actual time=0.047..0.048 rows=1 loops=1)
+   Group Key: nomealuno, sobrenomealuno
+   ->  Seq Scan on "matrícula" m  (cost=0.00..2.90 rows=1 width=18) (actual time=0.011..0.024 rows=1 loops=1)
+         Filter: (((nomealuno)::text = 'João'::text) AND ((sobrenomealuno)::text = 'Silva'::text))
+         Rows Removed by Filter: 59
+ Planning Time: 0.228 ms
+ Execution Time: 0.085 ms
+(7 linhas)
+
+                                                                      QUERY PLAN                                                                       
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ Nested Loop  (cost=4.76..7.94 rows=4 width=33) (actual time=0.157..0.261 rows=16 loops=1)
+   ->  Hash Join  (cost=4.62..6.47 rows=4 width=46) (actual time=0.131..0.163 rows=16 loops=1)
+         Hash Cond: ((pd.nomedisciplina)::text = (d.nomedisciplina)::text)
+         ->  Seq Scan on professordisciplina pd  (cost=0.00..1.59 rows=59 width=46) (actual time=0.006..0.014 rows=59 loops=1)
+         ->  Hash  (cost=4.57..4.57 rows=4 width=19) (actual time=0.089..0.091 rows=16 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               ->  Hash Join  (cost=2.80..4.57 rows=4 width=19) (actual time=0.056..0.078 rows=16 loops=1)
+                     Hash Cond: (d."códigocurso" = c."códigocurso")
+                     ->  Seq Scan on disciplina d  (cost=0.00..1.60 rows=60 width=23) (actual time=0.003..0.010 rows=60 loops=1)
+                     ->  Hash  (cost=2.75..2.75 rows=4 width=4) (actual time=0.028..0.028 rows=4 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                           ->  Seq Scan on curso c  (cost=0.00..2.75 rows=4 width=4) (actual time=0.007..0.019 rows=4 loops=1)
+                                 Filter: ((nomedepartamento)::text = 'Departamento de Computação'::text)
+                                 Rows Removed by Filter: 56
+   ->  Index Only Scan using professor_pkey on professor p  (cost=0.14..0.37 rows=1 width=27) (actual time=0.005..0.005 rows=1 loops=16)
+         Index Cond: ((nome = (pd.nomeprofessor)::text) AND (sobrenome = (pd.sobrenomeprofessor)::text) AND (telefone = (pd.telefoneprofessor)::text))
+         Heap Fetches: 16
+ Planning Time: 1.512 ms
+ Execution Time: 0.335 ms
+(19 linhas)
+
+ QUERY PLAN                                                                                                                                          
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=7.07..7.07 rows=1 width=46) (actual time=1.092..1.097 rows=19 loops=1)
+   Sort Key: (avg(a."notadidática")) DESC
+   Sort Method: quicksort  Memory: 26kB
+   ->  GroupAggregate  (cost=7.03..7.06 rows=1 width=46) (actual time=0.939..1.044 rows=19 loops=1)
+         Group Key: p.nome, p.sobrenome
+         Filter: (avg(a."notadidática") < '8'::numeric)
+         Rows Removed by Filter: 40
+         ->  Sort  (cost=7.03..7.04 rows=1 width=18) (actual time=0.924..0.934 rows=60 loops=1)
+               Sort Key: p.nome, p.sobrenome
+               Sort Method: quicksort  Memory: 29kB
+               ->  Nested Loop  (cost=3.05..7.02 rows=1 width=18) (actual time=0.171..0.796 rows=60 loops=1)
+                     ->  Nested Loop  (cost=2.91..6.65 rows=1 width=56) (actual time=0.142..0.530 rows=60 loops=1)
+                           ->  Hash Join  (cost=2.77..6.28 rows=1 width=96) (actual time=0.121..0.226 rows=60 loops=1)
+                                 Hash Cond: (((a.nomeprofessor)::text = (o.nomeprofessor)::text) AND ((a.sobrenomeprofessor)::text = (o.sobrenomeprofessor)::text) AND ((a.telefoneprofessor)::text = (o.telefoneprofessor)::text) AND ((a.nomedisciplina)::text = (o.nomedisciplina)::text))
+                                 ->  Seq Scan on "avaliação" a  (cost=0.00..2.60 rows=60 width=50) (actual time=0.008..0.025 rows=60 loops=1)
+                                 ->  Hash  (cost=1.59..1.59 rows=59 width=46) (actual time=0.085..0.086 rows=59 loops=1)
+                                       Buckets: 1024  Batches: 1  Memory Usage: 13kB
+                                       ->  Seq Scan on ofertadisciplina o  (cost=0.00..1.59 rows=59 width=46) (actual time=0.006..0.020 rows=59 loops=1)
+                           ->  Index Only Scan using professor_pkey on professor p  (cost=0.14..0.37 rows=1 width=27) (actual time=0.004..0.004 rows=1 loops=60)
+                                 Index Cond: ((nome = (o.nomeprofessor)::text) AND (sobrenome = (o.sobrenomeprofessor)::text) AND (telefone = (o.telefoneprofessor)::text))
+                                 Heap Fetches: 60
+                     ->  Index Only Scan using disciplina_pkey on disciplina d  (cost=0.14..0.36 rows=1 width=19) (actual time=0.004..0.004 rows=1 loops=60)
+                           Index Cond: (nomedisciplina = (o.nomedisciplina)::text)
+                           Heap Fetches: 60
+ Planning Time: 2.680 ms
+ Execution Time: 1.243 ms
+(26 linhas)
+
+                                                                          QUERY PLAN                                                                           
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Hash Join  (cost=2.65..5.68 rows=35 width=38) (actual time=0.070..0.122 rows=35 loops=1)
+   Hash Cond: (((m.nomealuno)::text = (a.nome)::text) AND ((m.sobrenomealuno)::text = (a.sobrenome)::text) AND ((m.telefonealuno)::text = (a.telefone)::text))
+   ->  Seq Scan on "matrícula" m  (cost=0.00..2.75 rows=35 width=38) (actual time=0.013..0.037 rows=35 loops=1)
+         Filter: ((bolsaoudesconto IS NOT NULL) AND (bolsaoudesconto <> 'Nenhuma'::text))
+         Rows Removed by Filter: 25
+   ->  Hash  (cost=1.60..1.60 rows=60 width=27) (actual time=0.044..0.045 rows=60 loops=1)
+         Buckets: 1024  Batches: 1  Memory Usage: 12kB
+         ->  Seq Scan on aluno a  (cost=0.00..1.60 rows=60 width=27) (actual time=0.003..0.011 rows=60 loops=1)
+ Planning Time: 0.462 ms
+ Execution Time: 0.182 ms
+(10 linhas)
+
+                                                QUERY PLAN                                                
+----------------------------------------------------------------------------------------------------------
+ Seq Scan on "matrícula" m  (cost=0.00..3.20 rows=20 width=37) (actual time=0.021..0.104 rows=23 loops=1)
+   Filter: ((notas)::numeric(10,2) > 8.0)
+   Rows Removed by Filter: 37
+ Planning Time: 0.098 ms
+ Execution Time: 0.132 ms
+(5 linhas)
+
+                                                                                  QUERY PLAN                                                                                  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Hash Join  (cost=5.11..7.62 rows=2 width=51) (actual time=0.160..0.211 rows=2 loops=1)
+   Hash Cond: (((p.nome)::text = (av.nomeprofessor)::text) AND ((p.sobrenome)::text = (av.sobrenomeprofessor)::text) AND ((p.telefone)::text = (av.telefoneprofessor)::text))
+   ->  Seq Scan on professor p  (cost=0.00..1.60 rows=60 width=27) (actual time=0.008..0.021 rows=60 loops=1)
+   ->  Hash  (cost=5.07..5.07 rows=2 width=64) (actual time=0.128..0.130 rows=2 loops=1)
+         Buckets: 1024  Batches: 1  Memory Usage: 9kB
+         ->  Hash Join  (cost=2.79..5.07 rows=2 width=64) (actual time=0.069..0.121 rows=2 loops=1)
+               Hash Cond: (((a.nome)::text = (av.nomealuno)::text) AND ((a.sobrenome)::text = (av.sobrenomealuno)::text) AND ((a.telefone)::text = (av.telefonealuno)::text))
+               ->  Seq Scan on aluno a  (cost=0.00..1.60 rows=60 width=27) (actual time=0.005..0.017 rows=60 loops=1)
+               ->  Hash  (cost=2.75..2.75 rows=2 width=77) (actual time=0.043..0.043 rows=2 loops=1)
+                     Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                     ->  Seq Scan on "avaliação" av  (cost=0.00..2.75 rows=2 width=77) (actual time=0.011..0.034 rows=2 loops=1)
+                           Filter: ("notadidática" < 7)
+                           Rows Removed by Filter: 58
+ Planning Time: 1.491 ms
+ Execution Time: 0.275 ms
+(15 linhas)
+
