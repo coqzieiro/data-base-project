@@ -6,18 +6,25 @@ Este projeto foi desenvolvido para a disciplina de Banco de Dados, com foco em m
 
 ## Como Rodar os Scripts?
 
-O comando `\i nome_do_arquivo.sql` no `psql` (o cliente de linha de comando do PostgreSQL) executa os comandos SQL contidos no arquivo especificado. Ele não mostra os resultados *imediatamente* na tela, a menos que os comandos no arquivo incluam instruções para exibir resultados (como um `SELECT`).
+Entre no PostgreSQL com:
 
-Para visualizar os resultados dos scripts, você precisa executar comandos `SELECT` *depois* que os scripts forem executados. Aqui está o que cada script faz e como você pode ver os resultados após a execução:
+```sql
+psql -h localhost -U nome_do_usuario -d nome_do_banco
+```
+Para verificar se existem tabelas criadas, use o comando `\dt` no `psql`. Ele listará todas as tabelas no banco de dados.
+
+```sql
+\dt
+```
+
+Para deletar as tabelas existentes, use:
+```sql
+\i 7-deletar-tabelas.sql
+```
 
 **1. `\i criar_tabelas.sql`:**
 
 *   **O que faz:** Este script cria as tabelas no seu banco de dados. Ele não exibe resultados diretamente.
-*   **Como verificar:** Para verificar se as tabelas foram criadas corretamente, use o comando `\dt` no `psql`. Ele listará todas as tabelas no banco de dados.
-
-    ```sql
-    \dt
-    ```
 
     Isso deve mostrar uma lista das suas tabelas: `Aluno`, `Avaliação`, `Avisos`, `Curso`, `Departamento`, etc.
 
